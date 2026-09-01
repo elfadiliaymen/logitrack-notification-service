@@ -1,5 +1,6 @@
 package com.example.notification.service;
 
+import com.example.notification.dto.NotificationRequest;
 import com.example.notification.model.Notification;
 import com.example.notification.repository.NotificationRepository;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,12 @@ public class NotificationService {
         return notificationRepository.findByOrderId(orderId);
     }
 
-    public Notification createNotification(Notification notification) {
+    public Notification createNotification(NotificationRequest request) {
+        Notification notification = new Notification(
+                request.getMessage(),
+                request.getType(),
+                request.getOrderId()
+        );
         return notificationRepository.save(notification);
     }
 

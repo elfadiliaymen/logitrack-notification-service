@@ -1,5 +1,6 @@
 package com.example.notification.controller;
 
+import com.example.notification.dto.NotificationRequest;
 import com.example.notification.model.Notification;
 import com.example.notification.service.NotificationService;
 import org.springframework.http.HttpStatus;
@@ -34,8 +35,8 @@ public class NotificationController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Notification createNotification(@RequestBody Notification notification) {
-        return notificationService.createNotification(notification);
+    public Notification createNotification(@RequestBody NotificationRequest request) {
+        return notificationService.createNotification(request);
     }
 
     @PutMapping("/{id}/read")
