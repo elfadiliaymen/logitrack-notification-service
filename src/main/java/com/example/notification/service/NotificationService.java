@@ -1,6 +1,7 @@
 package com.example.notification.service;
 
 import com.example.notification.dto.NotificationRequest;
+import com.example.notification.exception.NotificationNotFoundException;
 import com.example.notification.model.Notification;
 import com.example.notification.repository.NotificationRepository;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class NotificationService {
 
     public Notification getNotificationById(Long id) {
         return notificationRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Notification not found with id: " + id));
+                .orElseThrow(() -> new NotificationNotFoundException(id));
     }
 
     public List<Notification> getNotificationsByOrderId(Long orderId) {
